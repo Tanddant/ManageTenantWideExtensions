@@ -1,9 +1,11 @@
 import * as React from 'react';
 import useExtension from '../../../Hooks/UseExtension';
-import { Icon, Panel, Spinner, SpinnerSize, Text, Toggle, Stack, Dropdown, TextField, PanelType } from '@fluentui/react';
+import { Icon, Panel, Spinner, SpinnerSize, Text, Toggle, Stack, Dropdown, TextField, PanelType, Label, DialogFooter, PrimaryButton, DefaultButton } from '@fluentui/react';
 import { ExtensionLocation, LocationStrings } from '../../../Models/Location';
 import { Locations } from '../../../Models/Location';
 import { ListType, ListTypeStrings, ListTypes } from '../../../Models/ListType';
+import { CodeEditorEditable } from 'react-code-editor-editable'
+import 'highlight.js/styles/stackoverflow-light.css';
 
 export interface IExtensionManagerProps {
     ExtensionId: number;
@@ -12,7 +14,7 @@ export interface IExtensionManagerProps {
 }
 
 export const ExtensionManager: React.FunctionComponent<IExtensionManagerProps> = (props: React.PropsWithChildren<IExtensionManagerProps>) => {
-    const { ExtensionId, OnClose } = props;
+    const { ExtensionId, OnClose, OnSubmit } = props;
     const { isLoading, extension, update } = useExtension(ExtensionId);
 
     return (
@@ -30,17 +32,17 @@ export const ExtensionManager: React.FunctionComponent<IExtensionManagerProps> =
 
                         <Dropdown label='Location/type' options={Locations.map(loc => ({ key: loc, text: LocationStrings[loc] }))} selectedKey={extension.TenantWideExtensionLocation} onChange={(_, val) => update({ TenantWideExtensionLocation: val.key as ExtensionLocation })} />
                         <Dropdown label='List type' options={ListTypes.map(listType => ({ key: parseInt(listType as any), text: ListTypeStrings[listType] }))} selectedKey={extension.TenantWideExtensionListTemplate} onChange={(_, val) => update({ TenantWideExtensionListTemplate: val.key as ListType })} />
-
-                        <TextField
-                            value={extension.TenantWideExtensionComponentProperties}
-                            label='Component properties'
-                            multiline
-                            rows={10}
-                            onChange={(_, val) => update({ TenantWideExtensionComponentProperties: val })}
-                        />
+                        <div>
+                            <Label>Component properties</Label>
+                            <CodeEditorEditable width='100%' height='20em' language="json" value={extension.TenantWideExtensionComponentProperties} setValue={(value: string) => { update({ TenantWideExtensionComponentProperties: value }) }} />
+                        </div>
 
                         <TextField type='number' value={extension.TenantWideExtensionSequence + ""} label='Sequence' onChange={(_, val) => update({ TenantWideExtensionSequence: parseInt(val) })} />
 
+                        <DialogFooter>
+                            <PrimaryButton onClick={OnSubmit} text='Save' />
+                            <DefaultButton onClick={OnClose} text='Close' />
+                        </DialogFooter>
                     </Stack>
                 </>}
 

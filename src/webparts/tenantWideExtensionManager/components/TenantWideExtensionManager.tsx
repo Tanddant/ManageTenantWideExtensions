@@ -26,7 +26,7 @@ export const TenantWideExtensionManager: React.FunctionComponent<ITenantWideExte
   }), []);
 
   const fetchData = async () => { Provider.getExtension().then((apps) => { setApps(apps); }).catch((error) => { alert(error); }) }
-
+  const clearSelection = () => { selection.setAllSelected(false); setSelectedExtensionId(null); }
 
   React.useEffect(() => {
     fetchData();
@@ -36,8 +36,8 @@ export const TenantWideExtensionManager: React.FunctionComponent<ITenantWideExte
     <>
       <ExtensionManager
         ExtensionId={selectedExtensionId}
-        OnSubmit={() => { setSelectedExtensionId(null); fetchData(); }}
-        OnClose={() => setSelectedExtensionId(null)} />
+        OnSubmit={() => { clearSelection(); fetchData(); }}
+        OnClose={() => clearSelection()} />
 
       <ShimmeredDetailsList
         items={apps}

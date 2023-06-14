@@ -25,6 +25,7 @@ specifiers:
   gulp: 4.0.2
   office-ui-fabric-react: ^7.199.1
   react: 17.0.1
+  react-code-editor-editable: ^0.6.3
   react-dom: 17.0.1
   spfx-fast-serve-helpers: ~1.17.0
   tslib: 2.3.1
@@ -42,6 +43,7 @@ dependencies:
   '@pnp/sp': 3.16.0
   office-ui-fabric-react: 7.204.0_9c907a7ccd27a2e2d0ee9de5366482d1
   react: 17.0.1
+  react-code-editor-editable: 0.6.3_react@17.0.1
   react-dom: 17.0.1_react@17.0.1
   tslib: 2.3.1
 
@@ -8770,6 +8772,10 @@ packages:
       js-tokens: 3.0.2
     dev: true
 
+  /highlight.js/10.7.3:
+    resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
+    dev: false
+
   /hmac-drbg/1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
     dependencies:
@@ -13159,6 +13165,16 @@ packages:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
     dev: true
+
+  /react-code-editor-editable/0.6.3_react@17.0.1:
+    resolution: {integrity: sha512-/ZUXm82BlrDwIgEjE+iMjvoC7OOuDyz4B7wwHru7Srf9bpEaj00fagCLxe+M8+qseZ6NECMJvcibZaezFMF0bw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.0.0
+    dependencies:
+      highlight.js: 10.7.3
+      react: 17.0.1
+    dev: false
 
   /react-dom/17.0.1_react@17.0.1:
     resolution: {integrity: sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==}
