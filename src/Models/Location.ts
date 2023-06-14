@@ -1,4 +1,4 @@
-export enum Location {
+export enum ExtensionLocation {
     ApplicationCustomizer = "ClientSideExtension.ApplicationCustomizer",
     ContextMenu = "ClientSideExtension.ListViewCommandSet.ContextMenu",
     CommandBar = "ClientSideExtension.ListViewCommandSet.CommandBar",
@@ -6,10 +6,10 @@ export enum Location {
 }
 
 export const LocationStrings = {
-    [Location.ApplicationCustomizer]: "Application Customizer",
-    [Location.ContextMenu]: "Context Menu",
-    [Location.CommandBar]: "Command Bar",
-    [Location.ListViewCommandSet]: "List View Command Set",
+    [ExtensionLocation.ApplicationCustomizer]: "Application Customizer",
+    [ExtensionLocation.ContextMenu]: "Context Menu",
+    [ExtensionLocation.CommandBar]: "Command Bar",
+    [ExtensionLocation.ListViewCommandSet]: "List View Command Set",
 }
 
-export const Locations = Object.keys(LocationStrings);
+export const Locations: ExtensionLocation[] = Object.keys(LocationStrings) as ExtensionLocation[];
