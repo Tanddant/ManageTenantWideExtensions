@@ -6,6 +6,7 @@ import { CleanExtension, ExtensionSelects, IExtension } from "../Models/Extensio
 export interface IAppCatalogProvider {
     getExtension(): Promise<IExtension[]>;
     getExtensionById(Id: number): Promise<IExtension>;
+    updateExtension(Id: number, extension: Partial<IExtension>): Promise<void>;
 }
 
 export class AppCatalogProvider implements IAppCatalogProvider {
@@ -15,7 +16,7 @@ export class AppCatalogProvider implements IAppCatalogProvider {
 
     private async getAppCatalog(): Promise<IWeb> {
         if (this._appCatalog === null) {
-            const res = await this.SP.getTenantAppCatalogWeb()
+            const res = await this.SP.getTenantAppCatalogWeb();
             this._appCatalog = res;
         }
         return this._appCatalog;
@@ -54,6 +55,13 @@ export class AppCatalogProvider implements IAppCatalogProvider {
         return item;
     }
 
-
-
+    public async updateExtension(Id: number, extension: Partial<IExtension>): Promise<void> {
+        const appCatalog = await this.getAppCatalog();
+        const LIST_ID = await this.getTenantWideExtensionsListId();
+        try {
+            await appCatalog.lists.getById(LIST_ID).items.getById(Id).update(extension);
+        } catch (error) {
+            alert(error);
+        }
+    }
 }

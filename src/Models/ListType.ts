@@ -55,6 +55,6 @@ export const ListTypeStrings = {
     [ListType.TenantWideExtensions]: "Tenant Wide Extensions",
 }
 
-export const ListTypes: ListType[] = Object.keys(ListTypeStrings) as any[] as ListType[];
+export const ListTypes: ListType[] = Object.keys(ListTypeStrings).map(x => parseInt(x)) as ListType[];
 
 export const OFFICIALLY_SUPPORTED_LIST_TYPES = [ListType.CustomList, ListType.DocumentLibrary];

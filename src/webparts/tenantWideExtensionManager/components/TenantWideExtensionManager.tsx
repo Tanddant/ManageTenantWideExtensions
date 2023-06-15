@@ -25,8 +25,8 @@ export const TenantWideExtensionManager: React.FunctionComponent<ITenantWideExte
     },
   }), []);
 
-  const fetchData = async () => { Provider.getExtension().then((apps) => { setApps(apps); }).catch((error) => { alert(error); }) }
-  const clearSelection = () => { selection.setAllSelected(false); setSelectedExtensionId(null); }
+  const fetchData: () => void = async () => { Provider.getExtension().then((apps) => { setApps(apps); }).catch((error) => { alert(error); }) }
+  const clearSelection: () => void = () => { selection.setAllSelected(false); setSelectedExtensionId(null); }
 
   React.useEffect(() => {
     fetchData();
